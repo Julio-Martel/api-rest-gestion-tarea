@@ -12,7 +12,7 @@ const registrarUsuario = (req,res) => {
 
     if(!usuario || !password || !role){
         return res.status(400).json({
-            mensaje: "datos invalidos"
+            mensaje: "Debe completar todos los campos"
         })
     }
 
