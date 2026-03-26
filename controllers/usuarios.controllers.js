@@ -1,11 +1,10 @@
-const generarId = require('../utils/utils')
+const utils = require('../utils/utils')
 const usuarios = require('../database/usuarios');
-const validarBody = require('../utils/utils');
 
 const registrarUsuario = (req,res) => {
     const {usuario, password, role} = req.body;
 
-    if(validarBody.validarBody(req.body)){
+    if(utils.validarBody(req.body)){
          return res.status(400).json({
             mensaje: "Debe enviar algo en el body"
         })       
@@ -25,7 +24,7 @@ const registrarUsuario = (req,res) => {
         })
     } else {
         const nuevoUsuario = {
-            id: generarId(),
+            id: utils.generarId(),
             usuario: usuario,
             password: password,
             role: role
@@ -34,7 +33,8 @@ const registrarUsuario = (req,res) => {
         usuarios.push(nuevoUsuario);
     
         return res.status(201).json({
-            mensaje: 'Nuevo usuario registrado'
+            mensaje: 'Nuevo usuario registrado',
+            usuarios
         })
     }
 }
