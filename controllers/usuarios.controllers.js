@@ -20,7 +20,7 @@ const registrarUsuario = (req,res) => {
 
     if(usuarioExistente){
         return res.status(400).json({
-            mensaje: 'Nombre de usuario repetido. Use otro'
+            mensaje: 'Nombre de usuario registrado. Use otro'
         })
     } else {
         const nuevoUsuario = {
@@ -39,4 +39,4 @@ const registrarUsuario = (req,res) => {
     }
 }
 
-module.exports = registrarUsuario;
+module.exports = {registrarUsuario};
