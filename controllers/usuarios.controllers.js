@@ -46,7 +46,33 @@ const mostrarTodosLosUsuarios = (req,res) => {
     })
 }
 
+const eliminarUsuario = (req,res) => {
+    const id = req.body.id;
+
+    const posicionUsuario = usuarios.findIndex(u => u.id === id);
+
+    if(posicionUsuario !== -1) {
+        usuarios.splice(posicionUsuario,1);
+
+        let j = 1;
+        for (const usuario of usuarios) {
+            usuario.id = j;
+            j++;
+        }
+
+        return res.status(200).json({
+            mensaje: "Usuario eliminado. Base de datos actualizada",
+            usuarios
+        })
+    } else {
+        return res.status(404).json({
+            mensaje: "id inexistente"
+        })
+    }
+}
+
 module.exports = {
     registrarUsuario,
-    mostrarTodosLosUsuarios
+    mostrarTodosLosUsuarios,
+    eliminarUsuario
 };
