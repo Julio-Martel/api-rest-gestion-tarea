@@ -27,8 +27,6 @@ const loginUsuario = (req, res, next) => {
     }
 
     next();
-
 }
-
 
 module.exports = {loginUsuario};
