@@ -39,4 +39,14 @@ const registrarUsuario = (req,res) => {
     }
 }
 
-module.exports = {registrarUsuario};
+const mostrarTodosLosUsuarios = (req,res) => {
+    return res.status(200).json({
+        mensaje: "Todos los usuarios",
+        usuarios
+    })
+}
+
+module.exports = {
+    registrarUsuario,
+    mostrarTodosLosUsuarios
+};
