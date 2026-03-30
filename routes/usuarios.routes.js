@@ -10,4 +10,9 @@ router.post('/login', middlewares.loginUsuario,authMiddlewares.validarUsuarioPor
 router.get('/',middlewares.loginUsuario,authMiddlewares.validarUsuarioPorRol, usuarioController.mostrarTodosLosUsuarios);
 router.delete('/',middlewares.loginUsuario,authMiddlewares.validarUsuarioPorRol, usuarioController.eliminarUsuario);
 
+/*
+AGREGAR GESTOR DE TAREAS DEL USUARIO
+
+*/
+
 module.exports = router;
