@@ -42,6 +42,30 @@ const crearTarea = (req,res) => {
     })
 }
 
+
+const validarPermiso = (req,res) => {
+    const {usuario,password} = req.body;
+    const filtrarUsuario = usuarios.find(u => u.usuario === usuario && u.password === password);
+
+    const rolUsuario = filtrarUsuario.rol;
+
+    if(rolUsuario === 'admin') {
+        return res.status(200).json({
+            mensaje: 'Tareas de todos los usuarios',
+            tareas
+        })
+    } else {
+        const tareasFiltradasDelUsuarioActual = tareas.filter(u => u.usuarioId === filtrarUsuario.id);
+    
+        return res.status(200).json({
+            mensaje: `Tareas de ${filtrarUsuario.usuario}`,
+            tareasFiltradasDelUsuarioActual
+        });
+            
+    }
+}
+
 module.exports = {
-    crearTarea
+    crearTarea,
+    validarPermiso
 }
