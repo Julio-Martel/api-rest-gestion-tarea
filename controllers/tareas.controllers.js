@@ -61,11 +61,44 @@ const validarPermiso = (req,res) => {
             mensaje: `Tareas de ${filtrarUsuario.usuario}`,
             tareasFiltradasDelUsuarioActual
         });
-            
+
     }
+}
+
+const eliminarTarea = (req,res) => {
+    const id = req.body.id;
+
+    const tareaAeliminar = tareas.findIndex(t => t.id === id);
+    
+    tareas.splice(tareaAeliminar, 1);
+
+    let j = 1;  
+    for (const tarea of tareas) {
+        tarea.id = j;
+        j++;
+    }  
+
+    return res.status(200).json({
+        mensaje: 'Tarea eliminada con exito',
+        tareas
+    })
+}
+
+const filrarTareasPorEstado = (req,res) => {
+    const estado = req.query.estado;
+
+    const tareasFiltradas = tareas.filter(t => t.estado === estado);
+
+    return res.status(200).json({
+        mensaje: 'Tareas filtradas por estado',
+        tareasFiltradas
+    })
+
 }
 
 module.exports = {
     crearTarea,
-    validarPermiso
+    validarPermiso,
+    eliminarTarea,
+    filrarTareasPorEstado
 }
